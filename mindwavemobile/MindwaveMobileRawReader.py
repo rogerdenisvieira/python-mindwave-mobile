@@ -19,7 +19,7 @@ class MindwaveMobileRawReader:
         if (self._mindwaveMobileAddress is None):
             self._mindwaveMobileAddress = self._findMindwaveMobileAddress()
         if (self._mindwaveMobileAddress is not None):            
-            print ("Discovered Mindwave Mobile...")
+            print ("Discovered Mindwave Mobile... Address: {}".format(self._mindwaveMobileAddress))
             self._connectToAddress(self._mindwaveMobileAddress)
         else:
             self._printErrorDiscoveryMessage()
@@ -27,6 +27,7 @@ class MindwaveMobileRawReader:
     def _findMindwaveMobileAddress(self):
         nearby_devices = bluetooth.discover_devices(lookup_names = True)
         for address, name in nearby_devices:
+            print("Device: {} Adress: {}".format(name, address))
             if (name == "MindWave Mobile"):
                 return address
         return None
